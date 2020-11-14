@@ -5,25 +5,44 @@ import {
   Switch,
   Route,
   Link,
-  useParams
+  useParams,
+  useLocation
 } from "react-router-dom";
 import ClientView from './ClientView'
 import InstructorView from './InstructorView'
 import CreateClass from './CreateClass'
+import Login from './Login'
+import Signup from './Signup'
 function App() {
+  let location = useLocation();
+  console.log(location.pathname);
   return (
-    <Router>
+    <>
       <Route path="/">
-        <div className="navBar">
-          Logged in as : Username | Role | <Link to={'/'}>Back to home</Link>
-        </div>
+        {location.pathname !== "/" && 
+          <div className="navBar">
+            Logged in as : Username | Role | <Link to={'/'}>Back to home</Link>
+          </div>
+        }
       </Route>
       <Route exact path="/">
         <div className="App">
           <div className="App-header">
-            Main
+            Welcome to Anywhere Fitness!
+            <Link to={'/login'}>
+              <button>Login</button>
+            </Link>
+            <Link to={'/signup'}>
+              <button>Signup</button>
+            </Link>
           </div>
         </div>
+      </Route>
+      <Route path="/login">
+        <Login/>
+      </Route>
+      <Route path="/signup">
+        <Signup/>
       </Route>
       <Route path="/client">
         <ClientView/>
@@ -34,7 +53,7 @@ function App() {
       <Route path="/createclass">
         <CreateClass/>
       </Route>
-    </Router>
+    </>
     
   );
 }
