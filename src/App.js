@@ -13,11 +13,16 @@ import CreateClass from './CreateClass'
 function App() {
   return (
     <Router>
+      <Route path="/">
+        <div className="navBar">
+          Logged in as : Username | Role | <Link to={'/'}>Back to home</Link>
+        </div>
+      </Route>
       <Route exact path="/">
         <div className="App">
-          <header className="App-header">
+          <div className="App-header">
             Main
-          </header>
+          </div>
         </div>
       </Route>
       <Route path="/client">
