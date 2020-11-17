@@ -73,6 +73,7 @@ export default function Register(){
             last_name:'',
             email:'',
             password:'',
+            role:'',
         });
         const [formState, setFormState] = useState({
             first_name:'',
@@ -116,7 +117,13 @@ export default function Register(){
                         <option value='Instructor'>Instructor</option>
                     </select>
                </div>
-               
+               <div>
+                    {errors.first_name.length > 0 ? (<p>{errors.first_name}</p>) : null}
+                    {errors.last_name.length > 0 ? (<p>{errors.last_name}</p>) : null}
+                    {errors.email.length > 0 ? (<p>{errors.email}</p>) : null}
+                    {errors.password.length > 0 ? (<p>{errors.password}</p>) : null}
+                    {errors.role.length > 0 ? (<p>{errors.role}</p>) : null}
+                </div>
                <button className="btn btn-primary btn-block">Sign Up</button>
            </form>
         )
