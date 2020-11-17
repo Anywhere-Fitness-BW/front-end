@@ -1,7 +1,13 @@
-import './App.css';
+
 import React from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './App.css';
+import Home from './component/Home';
+import Nav from './component/Nav';
+import Login from './component/Login';
+import Register from './component/Register';
 import {
-  BrowserRouter as Router,
+  BrowserRouter,
   Switch,
   Route,
   Link,
@@ -11,10 +17,27 @@ import {
 
 function App() {
   return (
+<BrowserRouter>
+  <div className="App">
+    <Nav />
 
-   <h3>Test</h3>
-    
+    <div className="auth-wrapper">
+      <div className="auth-inner">
+        
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/Register" component={Register} /> 
+        </Switch>
+        
+
+      </div>
+     </div>
+    </div>
+
+    </BrowserRouter>
   );
 }
+
 
 export default App;
