@@ -24,6 +24,56 @@ export default function Register(){
     // )
 
     };*/
+        const [buttonDisabled, setButtonDisabled] = useState(false);
+        const inputChange = e => {
+            e.persist();
+            let value = e.target.value;
+            Yup
+            .reach(formSchema, e.target.name)
+            .validate(value)
+            .then(valid => {
+            setErrors({
+                ...errors,
+                [e.target.name]: ""
+            });
+            })
+            .catch(err => {
+            setErrors({
+                ...errors,
+                [e.target.name]: err.errors[0]
+            });
+            });
+            setFormState({
+                ...formState,
+                [e.target.name]: value
+            });
+        };
+        const formSchema = Yup.object().shape({
+            first_name: Yup
+                .string()
+                .required("Must include first name.")
+                .min(2, "Name must be at least 2 characters"),
+            last_name: Yup
+                .string()
+                .required("Must include last name.")
+                .min(2, "Name must be at least 2 characters"),
+            email: Yup
+                .string()
+                .required("Must include email.")
+                .email("Must be valid email"),
+            password: Yup
+                .string()
+                .required("Must have password")
+                .min(6, "Password must be at least 6 characters"),
+            role: Yup
+                .string()
+            });
+        const [errors, setErrors] = useState({
+            first_name:'',
+            last_name:'',
+            email:'',
+            password:'',
+        });
         const [formState, setFormState] = useState({
             first_name:'',
             last_name:'',
@@ -37,37 +87,31 @@ export default function Register(){
                <div className='form-group'>
                    <label>First Name</label>
                    <input type='text' className='form-control'
-                   placeholder='John' name='firstname'
+                   placeholder='John' name='first_name' onChange={inputChange}
                    />
                </div>
 
                <div className="form-group">
                    <label>Last Name</label>
                    <input type='text' className='form-control'
-                   placeholder='Doe' name='lastname'
+                   placeholder='Doe' name='last_name' onChange={inputChange}
                    />
                </div>
                <div className='form-group'>
                    <label>Email</label>
                    <input type='email' className='form-control'
-                   placeholder='john@gmail.com' name='email'
+                   placeholder='john@gmail.com' name='email' onChange={inputChange}
                    />
                </div>
                <div className='form-group'>
                    <label>Password</label>
                    <input type='password' className='form-control'
-                   placeholder='Enter Password' name='password'
-                   />
-               </div>
-               <div className='form-group'>
-                   <label>Confirm Password</label>
-                   <input type='password' className='form-control'
-                   placeholder='Confirm Password' name='password_confirm'
+                   placeholder='Enter Password' name='password' onChange={inputChange}
                    />
                </div>
                <div className='form-group'>
                    <label>Select Role</label>
-                   <select name='role'> 
+                   <select name='role' onChange={inputChange}> 
                         <option value='Client'>Client</option>
                         <option value='Instructor'>Instructor</option>
                     </select>
