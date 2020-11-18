@@ -2,28 +2,6 @@ import React, {useState, useEffect} from 'react';
 import * as Yup from "yup";
 const axios = require('axios').default;
 export default function Register(){
-    /*
-    const handleSubmit = e => {
-        e.preventDefault();
-        const data = {
-            first_name: this.firstName,
-            last_name: this.lastName,
-            email: this.email,
-            password: this.password,
-            password_confirm: this.confirmPassword
-        };
-     console.log(data);
-    // axios.post('https://localhost:8000/register', data).then(
-    //     res => {
-    //         console.log(res)
-    //     }
-    // ).catch(
-    //     err => {
-    //         console.log('erroooooooooo', err);
-    //     }
-    // )
-
-    };*/
         const submitForm = e => {
             e.preventDefault();
             console.log("Submitting");

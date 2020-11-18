@@ -22,25 +22,6 @@ export default function Login() {
         })
         .catch(err => console.log(err.response));
     }
-    /*
-    handleSubmit = (e) => {
-        e.preventDefault();
-
-        const data = {
-            email: this.email,
-            password: this.password
-        };
-        
-        // axios
-        // .post('http://127.0.0.1:5000/', data)
-        // .then(res => {
-        //     console.log('succccccccess', res)
-        // })
-        // .catch(err => {
-        //     console.log(err)
-        // })
-    };
-    */
         return (
             <form onSubmit={submitForm}>
                <h3>Login</h3>
