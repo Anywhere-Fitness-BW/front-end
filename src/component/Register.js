@@ -61,6 +61,10 @@ export default function Register(){
                 .string()
                 .required("Must include email.")
                 .email("Must be valid email"),
+            username: Yup
+                .string()
+                .required("Must include username.")
+                .min(3, "Username must be at least 3 characters in length"),
             password: Yup
                 .string()
                 .required("Must have password")
@@ -73,6 +77,7 @@ export default function Register(){
             last_name:'',
             email:'',
             password:'',
+            username:'',
             role:'',
         });
         const [formState, setFormState] = useState({
@@ -80,8 +85,14 @@ export default function Register(){
             last_name:'',
             email:'',
             password:'',
+            username:'',
             role:'Client'
         });
+        useEffect(() => {
+            formSchema.isValid(formState).then(valid => {
+              setButtonDisabled(!valid);
+            });
+          }, [formState]);
         return (
            <form>
                <h3>Sign Up</h3>
@@ -105,6 +116,12 @@ export default function Register(){
                    />
                </div>
                <div className='form-group'>
+                   <label>Username</label>
+                   <input type='text' className='form-control'
+                   placeholder='johndoe' name='username' onChange={inputChange}
+                   />
+               </div>
+               <div className='form-group'>
                    <label>Password</label>
                    <input type='password' className='form-control'
                    placeholder='Enter Password' name='password' onChange={inputChange}
@@ -121,10 +138,11 @@ export default function Register(){
                     {errors.first_name.length > 0 ? (<p>{errors.first_name}</p>) : null}
                     {errors.last_name.length > 0 ? (<p>{errors.last_name}</p>) : null}
                     {errors.email.length > 0 ? (<p>{errors.email}</p>) : null}
+                    {errors.username.length > 0 ? (<p>{errors.username}</p>) : null}
                     {errors.password.length > 0 ? (<p>{errors.password}</p>) : null}
                     {errors.role.length > 0 ? (<p>{errors.role}</p>) : null}
                 </div>
-               <button className="btn btn-primary btn-block">Sign Up</button>
+               <button className="btn btn-primary btn-block" disabled={buttonDisabled}>Sign Up</button>
            </form>
         )
     }
