@@ -24,6 +24,16 @@ export default function Register(){
     // )
 
     };*/
+        const submitForm = e => {
+            e.preventDefault();
+            console.log("Submitting");
+            axios
+            .post("https://reqres.in/api/users", formState)
+            .then(res => {
+                console.log("success", res.data);
+            })
+            .catch(err => console.log(err.response));
+        }
         const [buttonDisabled, setButtonDisabled] = useState(false);
         const inputChange = e => {
             e.persist();
@@ -61,6 +71,10 @@ export default function Register(){
                 .string()
                 .required("Must include email.")
                 .email("Must be valid email"),
+            username: Yup
+                .string()
+                .required("Must include username.")
+                .min(3, "Username must be at least 3 characters in length"),
             password: Yup
                 .string()
                 .required("Must have password")
@@ -73,6 +87,7 @@ export default function Register(){
             last_name:'',
             email:'',
             password:'',
+            username:'',
             role:'',
         });
         const [formState, setFormState] = useState({
@@ -80,39 +95,50 @@ export default function Register(){
             last_name:'',
             email:'',
             password:'',
+            username:'',
             role:'Client'
         });
+        useEffect(() => {
+            formSchema.isValid(formState).then(valid => {
+              setButtonDisabled(!valid);
+            });
+          }, [formState]);
         return (
-           <form>
+           <form onSubmit={submitForm}>
                <h3>Sign Up</h3>
                <div className='form-group'>
                    <label>First Name</label>
                    <input type='text' className='form-control'
-                   placeholder='John' name='first_name' onChange={inputChange}
+                   placeholder='John' name='first_name' value={formState.first_name} onChange={inputChange}
                    />
                </div>
-
                <div className="form-group">
                    <label>Last Name</label>
                    <input type='text' className='form-control'
-                   placeholder='Doe' name='last_name' onChange={inputChange}
+                   placeholder='Doe' name='last_name' value={formState.last_name} onChange={inputChange}
                    />
                </div>
                <div className='form-group'>
                    <label>Email</label>
                    <input type='email' className='form-control'
-                   placeholder='john@gmail.com' name='email' onChange={inputChange}
+                   placeholder='john@gmail.com' name='email' value={formState.email} onChange={inputChange}
+                   />
+               </div>
+               <div className='form-group'>
+                   <label>Username</label>
+                   <input type='text' className='form-control'
+                   placeholder='johndoe' name='username' value={formState.username} onChange={inputChange}
                    />
                </div>
                <div className='form-group'>
                    <label>Password</label>
                    <input type='password' className='form-control'
-                   placeholder='Enter Password' name='password' onChange={inputChange}
+                   placeholder='Enter Password' name='password' value={formState.password} onChange={inputChange}
                    />
                </div>
                <div className='form-group'>
                    <label>Select Role</label>
-                   <select name='role' onChange={inputChange}> 
+                   <select name='role' onChange={inputChange} value={formState.role}> 
                         <option value='Client'>Client</option>
                         <option value='Instructor'>Instructor</option>
                     </select>
@@ -121,10 +147,11 @@ export default function Register(){
                     {errors.first_name.length > 0 ? (<p>{errors.first_name}</p>) : null}
                     {errors.last_name.length > 0 ? (<p>{errors.last_name}</p>) : null}
                     {errors.email.length > 0 ? (<p>{errors.email}</p>) : null}
+                    {errors.username.length > 0 ? (<p>{errors.username}</p>) : null}
                     {errors.password.length > 0 ? (<p>{errors.password}</p>) : null}
                     {errors.role.length > 0 ? (<p>{errors.role}</p>) : null}
                 </div>
-               <button className="btn btn-primary btn-block">Sign Up</button>
+               <button className="btn btn-primary btn-block" disabled={buttonDisabled}>Sign Up</button>
            </form>
         )
     }
