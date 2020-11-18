@@ -99,37 +99,37 @@ export default function Register(){
                <div className='form-group'>
                    <label>First Name</label>
                    <input type='text' className='form-control'
-                   placeholder='John' name='first_name' onChange={inputChange}
+                   placeholder='John' name='first_name' value={formState.first_name} onChange={inputChange}
                    />
                </div>
 
                <div className="form-group">
                    <label>Last Name</label>
                    <input type='text' className='form-control'
-                   placeholder='Doe' name='last_name' onChange={inputChange}
+                   placeholder='Doe' name='last_name' value={formState.last_name} onChange={inputChange}
                    />
                </div>
                <div className='form-group'>
                    <label>Email</label>
                    <input type='email' className='form-control'
-                   placeholder='john@gmail.com' name='email' onChange={inputChange}
+                   placeholder='john@gmail.com' name='email' value={formState.email} onChange={inputChange}
                    />
                </div>
                <div className='form-group'>
                    <label>Username</label>
                    <input type='text' className='form-control'
-                   placeholder='johndoe' name='username' onChange={inputChange}
+                   placeholder='johndoe' name='username' value={formState.username} onChange={inputChange}
                    />
                </div>
                <div className='form-group'>
                    <label>Password</label>
                    <input type='password' className='form-control'
-                   placeholder='Enter Password' name='password' onChange={inputChange}
+                   placeholder='Enter Password' name='password' value={formState.password} onChange={inputChange}
                    />
                </div>
                <div className='form-group'>
                    <label>Select Role</label>
-                   <select name='role' onChange={inputChange}> 
+                   <select name='role' onChange={inputChange} value={formState.role}> 
                         <option value='Client'>Client</option>
                         <option value='Instructor'>Instructor</option>
                     </select>
