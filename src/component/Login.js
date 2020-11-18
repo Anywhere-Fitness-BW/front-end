@@ -12,6 +12,16 @@ export default function Login() {
             [e.target.name]: value
         });
     };
+    const submitForm = e => {
+        e.preventDefault();
+        console.log("Submitting");
+        axios
+        .post("https://reqres.in/api/login", loginDetails)
+        .then(res => {
+            console.log("success", res.data);
+        })
+        .catch(err => console.log(err.response));
+    }
     /*
     handleSubmit = (e) => {
         e.preventDefault();
@@ -32,7 +42,7 @@ export default function Login() {
     };
     */
         return (
-            <form>
+            <form onSubmit={submitForm}>
                <h3>Login</h3>
                <div className='form-group'>
                    <label>Username</label>
