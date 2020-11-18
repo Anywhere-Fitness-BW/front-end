@@ -24,6 +24,16 @@ export default function Register(){
     // )
 
     };*/
+        const submitForm = e => {
+            e.preventDefault();
+            console.log("Submitting");
+            axios
+            .post("https://reqres.in/api/users", formState)
+            .then(res => {
+                console.log("success", res.data);
+            })
+            .catch(err => console.log(err.response));
+        }
         const [buttonDisabled, setButtonDisabled] = useState(false);
         const inputChange = e => {
             e.persist();
@@ -94,7 +104,7 @@ export default function Register(){
             });
           }, [formState]);
         return (
-           <form>
+           <form onSubmit={submitForm}>
                <h3>Sign Up</h3>
                <div className='form-group'>
                    <label>First Name</label>
@@ -102,7 +112,6 @@ export default function Register(){
                    placeholder='John' name='first_name' value={formState.first_name} onChange={inputChange}
                    />
                </div>
-
                <div className="form-group">
                    <label>Last Name</label>
                    <input type='text' className='form-control'
