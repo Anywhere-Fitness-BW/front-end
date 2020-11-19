@@ -6,11 +6,16 @@ export default function Register(){
             e.preventDefault();
             console.log("Submitting");
             axios
-            .post("https://reqres.in/api/users", formState)
+            .post ('https://buildweek-backend.herokuapp.com/')
+            // ('https://reqres.in/api/users')
+            
+            // .post("https://reqres.in/api/users", formState)
             .then(res => {
+
+                
                 console.log("success", res.data);
             })
-            .catch(err => console.log(err.response));
+            .catch(err => console.log(err.res));
         }
         const [buttonDisabled, setButtonDisabled] = useState(false);
         const inputChange = e => {

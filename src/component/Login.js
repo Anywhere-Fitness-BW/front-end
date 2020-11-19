@@ -16,8 +16,12 @@ export default function Login() {
         e.preventDefault();
         console.log("Submitting");
         axios
-        .post("https://reqres.in/api/login", loginDetails)
+        .post ('https://buildweek-backend.herokuapp.com/',loginDetails)
+        // ('https://reqres.in/api/users')
+        // ("https://buildweek-backend.herokuapp.com/", loginDetails)
         .then(res => {
+
+            localStorage.setItem('token', res.data.token);
             console.log("success", res.data);
         })
         .catch(err => console.log(err.response));
