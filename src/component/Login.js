@@ -16,7 +16,7 @@ export default function Login() {
         e.preventDefault();
         console.log("Submitting");
         axios
-        .post("https://reqres.in/api/login", loginDetails)
+        .post("https://cors-anywhere.herokuapp.com/https://buildweek-backend.herokuapp.com/api/auth/login", loginDetails)
         .then(res => {
             console.log("success", res.data);
         })

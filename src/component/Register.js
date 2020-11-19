@@ -6,7 +6,7 @@ export default function Register(){
             e.preventDefault();
             console.log("Submitting");
             axios
-            .post("https://reqres.in/api/users", formState)
+            .post("https://cors-anywhere.herokuapp.com/https://buildweek-backend.herokuapp.com/api/auth/register", formState)
             .then(res => {
                 console.log("success", res.data);
             })
