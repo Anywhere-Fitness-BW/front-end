@@ -57,7 +57,7 @@ export default function Register(){
                 .string()
                 .required("Must have password")
                 .min(6, "Password must be at least 6 characters"),
-            role: Yup
+            type: Yup
                 .string()
             });
         const [errors, setErrors] = useState({
@@ -66,7 +66,7 @@ export default function Register(){
             email:'',
             password:'',
             username:'',
-            role:'',
+            type:'',
         });
         const [formState, setFormState] = useState({
             first_name:'',
@@ -74,7 +74,7 @@ export default function Register(){
             email:'',
             password:'',
             username:'',
-            role:'Client'
+            type:'Client'
         });
         useEffect(() => {
             formSchema.isValid(formState).then(valid => {
@@ -115,8 +115,8 @@ export default function Register(){
                    />
                </div>
                <div className='form-group'>
-                   <label>Select Role</label>
-                   <select name='role' onChange={inputChange} value={formState.role}> 
+                   <label>Select role</label>
+                   <select name='type' onChange={inputChange} value={formState.type}> 
                         <option value='Client'>Client</option>
                         <option value='Instructor'>Instructor</option>
                     </select>
@@ -127,7 +127,7 @@ export default function Register(){
                     {errors.email.length > 0 ? (<p>{errors.email}</p>) : null}
                     {errors.username.length > 0 ? (<p>{errors.username}</p>) : null}
                     {errors.password.length > 0 ? (<p>{errors.password}</p>) : null}
-                    {errors.role.length > 0 ? (<p>{errors.role}</p>) : null}
+                    {errors.type.length > 0 ? (<p>{errors.type}</p>) : null}
                 </div>
                <button className="btn btn-primary btn-block" disabled={buttonDisabled}>Sign Up</button>
            </form>
