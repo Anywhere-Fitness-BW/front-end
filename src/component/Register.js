@@ -1,12 +1,13 @@
 import React, {useState, useEffect} from 'react';
 import * as Yup from "yup";
 const axios = require('axios').default;
+//https://cors-anywhere.herokuapp.com
 export default function Register(){
         const submitForm = e => {
             e.preventDefault();
             console.log("Submitting");
             axios
-            .post ('https://buildweek-backend.herokuapp.com/')
+            .post ('https://buildweek-backend.herokuapp.com/api/auth/register', formState)
             // ('https://reqres.in/api/users')
             
             // .post("https://reqres.in/api/users", formState)
