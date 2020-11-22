@@ -16,13 +16,12 @@ export default function Login() {
         e.preventDefault();
         console.log("Submitting");
         axios
-        .post ('https://buildweek-backend.herokuapp.com/',loginDetails)
-        // ('https://reqres.in/api/users')
-        // ("https://buildweek-backend.herokuapp.com/", loginDetails)
+        .post("https://buildweek-backend.herokuapp.com/login", loginDetails)
         .then(res => {
 
             localStorage.setItem('token', res.data.token);
             console.log("success", res.data);
+            this.props.push('/Home');
         })
         .catch(err => console.log(err.response));
     }

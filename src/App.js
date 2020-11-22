@@ -6,6 +6,7 @@ import Home from './component/Home';
 import Nav from './component/Nav';
 import Login from './component/Login';
 import Register from './component/Register';
+import PrivateRoute from './component/PrivatRoute';
 import {
   BrowserRouter,
   Switch,
@@ -25,7 +26,7 @@ function App() {
       <div className="auth-inner">
         
         <Switch>
-          <Route exact path="/" component={Home} />
+          <PrivateRoute exact path="/" component={Home} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/Register" component={Register} /> 
         </Switch>
