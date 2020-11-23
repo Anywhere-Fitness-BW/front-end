@@ -23,6 +23,7 @@ export default function Login() {
 
             localStorage.setItem('token', res.data.token);
             console.log("success", res.data);
+            this.props.push('/Home');
         })
         .catch(err => console.log(err.response));
     }
