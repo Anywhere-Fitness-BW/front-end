@@ -16,7 +16,9 @@ export default function Login() {
         e.preventDefault();
         console.log("Submitting");
         axios
-        .post("https://buildweek-backend.herokuapp.com/login", loginDetails)
+        .post ('https://buildweek-backend.herokuapp.com/api/auth/login',loginDetails)
+        // ('https://reqres.in/api/users')
+        // ("https://buildweek-backend.herokuapp.com/", loginDetails)
         .then(res => {
 
             localStorage.setItem('token', res.data.token);
